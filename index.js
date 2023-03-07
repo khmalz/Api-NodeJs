@@ -8,27 +8,27 @@ const response = require("./response");
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-   response(200, "Hello World", res);
+   response(200, "Success", "Hello World", res);
 });
 
 app.get("/pelajar", (req, res) => {
-   response(200, "List pelajar", res);
+   response(200, "Success", "List pelajar", res);
 });
 
 app.get("/pelajar/:np", (req, res) => {
-   response(200, `Pelajar dengan np ${req.params.np}`, res);
+   response(200, "Success", `Pelajar dengan np ${req.params.np}`, res);
 });
 
 app.post("/pelajar", (req, res) => {
-   response(200, "Created", res);
+   response(200, "Success", "Created", res);
 });
 
 app.put("/pelajar/edit", (req, res) => {
-   response(200, "Edited", res);
+   response(200, "Success", "Edited", res);
 });
 
 app.delete("/pelajar/delete", (req, res) => {
-   response(200, "Deleted", res);
+   response(200, "Success", "Deleted", res);
 });
 
 app.use((req, res) => {
