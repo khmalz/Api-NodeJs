@@ -3,20 +3,30 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const response = require("./response");
-// const db = require("./connection");
+const db = require("./connection");
 
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-   response(200, "Success", "Hello World", res);
+   response(200, "Success", "API Node Js", res);
 });
 
 app.get("/pelajar", (req, res) => {
-   response(200, "Success", "List pelajar", res);
+   const sql = "SELECT * FROM pelajar";
+   db.query(sql, (err, fields) => {
+      if (err) throw err;
+
+      response(200, "Success", fields, res);
+   });
 });
 
 app.get("/pelajar/:np", (req, res) => {
-   response(200, "Success", `Pelajar dengan np ${req.params.np}`, res);
+   const sql = `SELECT * FROM pelajar WHERE np = ${req.params.np}`;
+   db.query(sql, (err, field) => {
+      if (err) throw err;
+
+      response(200, "Success", field, res);
+   });
 });
 
 app.post("/pelajar", (req, res) => {

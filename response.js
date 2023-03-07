@@ -1,6 +1,6 @@
-const response = (statusCode, status, data, res) => {
+const response = (statusCode, message, data, res) => {
    res.status(statusCode).json({
-      status,
+      status: message,
       data,
    });
 };
