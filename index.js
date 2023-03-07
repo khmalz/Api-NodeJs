@@ -32,8 +32,7 @@ app.delete("/pelajar/delete", (req, res) => {
 });
 
 app.use((req, res) => {
-   res.status(404);
-   res.send(404);
+   res.sendStatus(404);
 });
 
 app.listen(port, () => {
