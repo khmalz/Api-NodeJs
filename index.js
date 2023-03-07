@@ -26,11 +26,11 @@ app.get("/pelajar/:np", (req, res) => {
    db.query(sql, (err, fields) => {
       if (err) throw err;
 
-      if (fields) {
-         response(200, "Success", fields, res);
-      } else {
-         if (err) response(500, "Invalid", err.sqlMessage, res);
+      if (isEmpty(fields)) {
+         response(404, "Invalid", "Data tidak ditemukan", res);
       }
+
+      response(200, "Success", fields, res);
    });
 });
 
