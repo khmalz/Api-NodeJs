@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 app.get("/pelajar", (req, res) => {
    const sql = "SELECT * FROM pelajar";
    db.query(sql, (err, fields) => {
-      if (err) throw err;
+      if (err) response(500, "Invalid", err.sqlMessage, res);
 
       response(200, "Success", fields, res);
    });
@@ -22,15 +22,28 @@ app.get("/pelajar", (req, res) => {
 
 app.get("/pelajar/:np", (req, res) => {
    const sql = `SELECT * FROM pelajar WHERE np = ${req.params.np}`;
-   db.query(sql, (err, field) => {
+   db.query(sql, (err, fields) => {
       if (err) throw err;
 
-      response(200, "Success", field, res);
+      if (fields) {
+         response(200, "Success", fields, res);
+      } else {
+         if (err) response(500, "Invalid", err.sqlMessage, res);
+      }
    });
 });
 
 app.post("/pelajar", (req, res) => {
-   response(200, "Success", "Created", res);
+   const { np, nama, alamat } = req.body;
+   const sql = `INSERT INTO pelajar (np, nama, alamat) VALUES (${np}, '${nama}', '${alamat}')`;
+
+   db.query(sql, (err, fields) => {
+      if (err) response(500, "Invalid", err.sqlMessage, res);
+
+      if (fields.affectedRows) {
+         response(201, "Success", "Success created new pelajar", res);
+      }
+   });
 });
 
 app.put("/pelajar/edit", (req, res) => {
