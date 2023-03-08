@@ -4,6 +4,7 @@ const cors = require("cors");
 const pelajarRoutes = require("./routes/pelajar");
 const response = require("./utils/response");
 const { port } = require("./utils/config");
+const { notFound } = require("./utils/middleware");
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,9 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/pelajar", pelajarRoutes);
 
-app.use((req, res) => {
-   res.sendStatus(404);
-});
+app.use(notFound);
 
 app.listen(port, () => {
    console.log(`listening on http://localhost:${port}`);
