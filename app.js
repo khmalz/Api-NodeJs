@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const pelajarRoutes = require("./routes/pelajar");
+const api = require("./routes/api");
 const response = require("./utils/response");
 const { notFound } = require("./utils/middleware");
 
@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
    response(200, "Success", "API Node Js", res);
 });
 
-app.use("/pelajar", pelajarRoutes);
+app.use("/api", api);
 
 app.use(notFound);
 
