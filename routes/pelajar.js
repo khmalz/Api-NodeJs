@@ -3,10 +3,7 @@ const router = express.Router();
 
 const pelajarController = require("../controllers/pelajar");
 
-router.get("/", pelajarController.get);
-router.get("/:np", pelajarController.detail);
-router.post("/", pelajarController.post);
-router.put("/", pelajarController.put);
-router.delete("/:np", pelajarController.delete);
+router.route("/").get(pelajarController.get).post(pelajarController.post).put(pelajarController.put);
+router.route("/:np").get(pelajarController.detail).delete(pelajarController.delete);
 
 module.exports = router;
