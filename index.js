@@ -28,9 +28,9 @@ app.get("/pelajar/:np", (req, res) => {
 
       if (isEmpty(fields)) {
          response(404, "Invalid", "Data tidak ditemukan", res);
+      } else {
+         response(200, "Success", fields, res);
       }
-
-      response(200, "Success", fields, res);
    });
 });
 
