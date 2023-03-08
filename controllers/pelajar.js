@@ -1,7 +1,7 @@
 const isEmpty = require("is-empty");
 
-const db = require("../connection");
-const response = require("../response");
+const db = require("../utils/connection");
+const response = require("../utils/response");
 
 exports.get = (req, res) => {
    const sql = "SELECT * FROM pelajar";

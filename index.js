@@ -1,9 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
-const { port } = require("./config");
 const pelajarRoutes = require("./routes/pelajar");
-const response = require("./response");
+const response = require("./utils/response");
+const { port } = require("./utils/config");
 
 const app = express();
 app.use(bodyParser.json());
