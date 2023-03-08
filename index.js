@@ -47,12 +47,34 @@ app.post("/pelajar", (req, res) => {
    });
 });
 
-app.put("/pelajar/edit", (req, res) => {
-   response(200, "Success", "Edited", res);
+app.put("/pelajar", (req, res) => {
+   const { np, nama, alamat } = req.body;
+   const sql = `UPDATE pelajar SET np = ${np}, nama = '${nama}', alamat = '${alamat}' WHERE np = ${np}`;
+
+   db.query(sql, (err, fields) => {
+      if (err) response(500, "Invalid", err.sqlMessage, res);
+
+      if (fields?.affectedRows) {
+         response(200, "Success", `Success edited pelajar with np ${np}`, res);
+      } else {
+         response(404, "Invalid", "Data tidak ditemukan", res);
+      }
+   });
 });
 
-app.delete("/pelajar/delete", (req, res) => {
-   response(200, "Success", "Deleted", res);
+app.delete("/pelajar/:np", (req, res) => {
+   const { np } = req.params;
+   const sql = `DELETE FROM pelajar WHERE np = ${np}`;
+
+   db.query(sql, (err, fields) => {
+      if (err) response(500, "Invalid", err.sqlMessage, res);
+
+      if (fields?.affectedRows) {
+         response(200, "Success", `Success deleted pelajar with np ${np}`, res);
+      } else {
+         response(404, "Invalid", "Data tidak ditemukan", res);
+      }
+   });
 });
 
 app.use((req, res) => {
