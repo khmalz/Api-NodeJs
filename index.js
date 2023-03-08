@@ -41,8 +41,8 @@ app.post("/pelajar", (req, res) => {
    db.query(sql, (err, fields) => {
       if (err) response(500, "Invalid", err.sqlMessage, res);
 
-      if (fields.affectedRows) {
-         response(201, "Success", "Success created new pelajar", res);
+      if (fields?.affectedRows) {
+         response(201, "Success", `Success created new pelajar with np ${np}`, res);
       }
    });
 });
