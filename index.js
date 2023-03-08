@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const pelajarRoutes = require("./routes/pelajar");
 const response = require("./utils/response");
 const { port } = require("./utils/config");
