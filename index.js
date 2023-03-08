@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const { port } = require("./config");
 const pelajarRoutes = require("./routes/pelajar");
 const response = require("./response");
 
 const app = express();
-const port = 3000;
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
