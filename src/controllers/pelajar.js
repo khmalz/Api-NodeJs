@@ -1,6 +1,6 @@
 const isEmpty = require("is-empty");
 
-const db = require("../utils/connection");
+const db = require("../utils/db");
 const response = require("../utils/response");
 
 exports.get = (req, res) => {
